@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>성당 3D</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="hud">
+    <div class="panel">
+      <div><strong>성당 산책</strong> · 방향키 / 왼쪽 패드 / 바닥·좌석 탭 이동 · 드래그 시점 회전</div>
+      <div class="controls-row">
+        <button id="music-btn" onclick="toggleAudio()">성가 켜기</button>
+        <button id="cursor-btn" onclick="toggleCursorMove()">커서 따라가기: 끔</button>
+        <button onclick="resetAvatarPos()">위치 초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dpad-wrap" aria-label="이동 패드">
+    <div id="dpad-knob"></div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

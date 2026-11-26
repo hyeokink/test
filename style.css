@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #14100e;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#hud {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.panel {
+  pointer-events: auto;
+  background: rgba(24, 19, 16, 0.72);
+  color: #f8f4ee;
+  border: 1px solid rgba(255, 224, 178, 0.22);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(8px);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.controls-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: rgba(220, 177, 60, 0.22);
+  color: #fff3d1;
+  border: 1px solid rgba(220, 177, 60, 0.55);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+#dpad-wrap {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: rgba(255, 248, 235, 0.12);
+  border: 1.5px solid rgba(255, 235, 200, 0.32);
+  backdrop-filter: blur(6px);
+  z-index: 15;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dpad-knob {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(245, 214, 145, 0.72);
+  border: 2px solid rgba(255, 250, 240, 0.9);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transform: translate(0px, 0px);
+  transition: transform 0.04s linear;
+  pointer-events: none;
+}
