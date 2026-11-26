@@ -17,22 +17,62 @@ function createArchedStainedGlassMesh(width, totalHeight, texture) {
   const rectHeight = totalHeight - archRadius;
 
   const shape = new THREE.Shape();
+
   shape.moveTo(-archRadius, -totalHeight / 2);
   shape.lineTo(archRadius, -totalHeight / 2);
-  shape.lineTo(archRadius, -totalHeight / 2 + rectHeight);
-  shape.absarc(0, -totalHeight / 2 + rectHeight, archRadius, 0, Math.PI, false);
+  shape.lineTo(
+    archRadius,
+    -totalHeight / 2 + rectHeight
+  );
+
+  shape.absarc(
+    0,
+    -totalHeight / 2 + rectHeight,
+    archRadius,
+    0,
+    Math.PI,
+    false
+  );
+
   shape.lineTo(-archRadius, -totalHeight / 2);
 
-  const geo = new THREE.ShapeGeometry(shape, 28);
+  // 아치 곡면 세분화
+  const geo = new THREE.ShapeGeometry(shape, 64);
+
   const pos = geo.attributes.position;
   const uvs = geo.attributes.uv;
+
+  // UV 매핑
   for (let i = 0; i < pos.count; i++) {
     const vx = pos.getX(i);
     const vy = pos.getY(i);
-    uvs.setXY(i, (vx + archRadius) / width, (vy + totalHeight / 2) / totalHeight);
+
+    const u = THREE.MathUtils.clamp(
+      (vx + archRadius) / width,
+      0,
+      1
+    );
+
+    const v = THREE.MathUtils.clamp(
+      (vy + totalHeight / 2) / totalHeight,
+      0,
+      1
+    );
+
+    uvs.setXY(i, u, v);
   }
 
-  const mat = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+  uvs.needsUpdate = true;
+  geo.computeVertexNormals();
+
+  const mat = new THREE.MeshBasicMaterial({
+    map: texture,
+    color: 0xffffff,
+    side: THREE.DoubleSide,
+    transparent: false,
+    toneMapped: false
+  });
+
   return new THREE.Mesh(geo, mat);
 }
 
@@ -468,3 +508,4 @@ export function createCathedral() {
 
   return { group, flames, seatSpots, colliders };
 }
+```[cite: 25, 26]
