@@ -508,4 +508,3 @@ export function createCathedral() {
 
   return { group, flames, seatSpots, colliders };
 }
-```[cite: 25, 26]
